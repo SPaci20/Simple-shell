@@ -13,7 +13,7 @@ int set_env(char **command)
 	if (!command[1] || !command[2])
 	{
 		fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
-		return -1;
+		return (-1);
 	}
 
 	var = command[1];
@@ -21,10 +21,10 @@ int set_env(char **command)
 	if (setenv(var, value, 1) == -1)
 	{
 		perror("setenv");
-		return -1;
+		return (-1);
 	}
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -40,16 +40,15 @@ int unset_env(char **command)
 	if (!command[1])
 	{
 		fprintf(stderr, "Usage: unsetenv VARIABLE\n");
-		return -1;
+		return (-1);
 	}
 
 	var = command[1];
 	if (unsetenv(var) == -1)
 	{
 		perror("unsetenv");
-		return -1;
+		return (-1);
 	}
 
-	return 0;
+	return (0);
 }
-

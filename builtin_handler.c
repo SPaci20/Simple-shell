@@ -27,15 +27,14 @@ int handle_builtin(char **command, char *line)
 	{
 		/* Initialize a new environment variable or modify an existing one */
 		if (set_env(command) == 0)
-			return 1;
+			return (1);
 	}
 	else if (strcmp(*command, "unsetenv") == 0)
 	{
 		/* Remove an environment variable */
 		if (unset_env(command) == 0)
-			return 1;
+			return (1);
 	}
 	/* The command is not a builtin */
 	return (0);
 }
-
