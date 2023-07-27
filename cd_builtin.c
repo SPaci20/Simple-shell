@@ -44,6 +44,15 @@ int change_directory(char *path)
 		return (-1);
 	}
 
+	/* Update the OLDPWD environment variable */
+	if (setenv("OLDPWD", old_pwd, 1) == -1)
+	{
+		perror("setenv");
+		free(old_pwd);
+		free(new_pwd);
+		return (-1);
+	}
+
 	free(old_pwd);
 	free(new_pwd);
 	return (0);
