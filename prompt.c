@@ -16,3 +16,4 @@ void prompt_user(void)
 		write(STDERR_FILENO, "$ ", 2);
 	}
 }
+

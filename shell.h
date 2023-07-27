@@ -12,7 +12,6 @@
 #include <time.h>
 #include <stdbool.h>
 
-
 /* environment variables */
 extern char **environ;
 extern __sighandler_t signal(int __sig, __sighandler_t __handler);
@@ -26,8 +25,6 @@ char *test_path(char **path, char *command);
 char *append_path(char **path, char *command);
 int handle_builtin(char **command, char *line);
 void exit_cmd(char **command, char *line);
-int set_env(char **command);
-int unset_env(char **command);
 void print_env(void);
 
 /* string handlers */
@@ -39,23 +36,31 @@ char *strchr(const char *s, int c);
 
 void execution(char *cp, char **cmd);
 char *find_path(void);
+
 /* helper function for efficient free */
 void free_buffers(char **buf);
+
+/* Structs */
 struct builtin
 {
 	char *env;
 	char *exit;
-} builtin;
+};
 
 struct info
 {
 	int final_exit;
 	int ln_count;
-} info;
+};
 
 struct flags
 {
 	bool interactive;
-} flags;
+}flags;
+
+/* Builtin functions */
+int set_env(char **command);
+int unset_env(char **command);
 
 #endif /* SHELL_H */
+

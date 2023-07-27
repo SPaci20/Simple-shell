@@ -1,10 +1,13 @@
 #include "shell.h"
 
+struct flags flags;
+struct info info;
+
 /**
- * main - Carries out the read, execute, and print output loop
- * @ac: Argument count
- * @av: Argument vector
- * @envp: Environment vector
+ * main - carries out the read, execute then print output loop
+ * @ac: argument count
+ * @av: argument vector
+ * @envp: environment vector
  *
  * Return: 0
  */
@@ -15,13 +18,16 @@ int main(int ac, char **av, char *envp[])
 	ssize_t linesize = 0;
 	char **command = NULL, **paths = NULL;
 	(void)envp, (void)av;
-
 	if (ac < 1)
 	{
 		return (-1);
 	}
-
 	signal(SIGINT, handle_signal);
+
+	/* Initialize the flags and info */
+	flags.interactive = 0;
+	info.ln_count = 0;
+
 	while (1)
 	{
 		free_buffers(command);
@@ -43,7 +49,7 @@ int main(int ac, char **av, char *envp[])
 		{
 			continue;
 		}
-		if (handle_builtin(command, line))
+		if (checker(command, line))
 		{
 			continue;
 		}
