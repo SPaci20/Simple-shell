@@ -26,7 +26,8 @@ char *test_path(char **path, char *command);
 char *append_path(char **path, char *command);
 int handle_builtin(char **command, char *line);
 void exit_cmd(char **command, char *line);
-
+int set_env(char **command);
+int unset_env(char **command);
 void print_env(void);
 
 /* string handlers */
