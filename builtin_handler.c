@@ -35,6 +35,12 @@ int handle_builtin(char **command, char *line)
 		if (unset_env(command) == 0)
 			return (1);
 	}
+	else if (strcmp(*command, "cd") == 0)
+	{
+		/* Change the current directory */
+		if (cd_builtin(command) == 0)
+			return (1);
+	}
 	/* The command is not a builtin */
 	return (0);
 }

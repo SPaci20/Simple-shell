@@ -61,6 +61,8 @@ struct flags
 /* Builtin functions */
 int set_env(char **command);
 int unset_env(char **command);
+int cd_builtin(char **command);
+
 
 #endif /* SHELL_H */
 
