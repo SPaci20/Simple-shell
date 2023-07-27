@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * main - carries out the read, execute then print output loop
- * @ac: argument count
- * @av: argument vector
- * @envp: environment vector
+ * main - Carries out the read, execute, and print output loop
+ * @ac: Argument count
+ * @av: Argument vector
+ * @envp: Environment vector
  *
  * Return: 0
  */
@@ -15,10 +15,12 @@ int main(int ac, char **av, char *envp[])
 	ssize_t linesize = 0;
 	char **command = NULL, **paths = NULL;
 	(void)envp, (void)av;
+
 	if (ac < 1)
 	{
 		return (-1);
 	}
+
 	signal(SIGINT, handle_signal);
 	while (1)
 	{
@@ -41,7 +43,7 @@ int main(int ac, char **av, char *envp[])
 		{
 			continue;
 		}
-		if (checker(command, line))
+		if (handle_builtin(command, line))
 		{
 			continue;
 		}
@@ -64,3 +66,4 @@ int main(int ac, char **av, char *envp[])
 	free(line);
 	return (0);
 }
+
