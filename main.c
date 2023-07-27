@@ -13,11 +13,14 @@ struct info info;
  */
 int main(int ac, char **av, char *envp[])
 {
+	char *current_dir = getcwd(NULL, 0);
 	char *line = NULL, *pathcommand = NULL, *path = NULL;
 	size_t bufsize = 0;
 	ssize_t linesize = 0;
 	char **command = NULL, **paths = NULL;
 	(void)envp, (void)av;
+
+
 	if (ac < 1)
 	{
 		return (-1);
@@ -27,6 +30,13 @@ int main(int ac, char **av, char *envp[])
 	/* Initialize the flags and info */
 	flags.interactive = 0;
 	info.ln_count = 0;
+
+	/* Initialize PWD environment variable with the current directory */
+	if (current_dir)
+	{
+		setenv("PWD", current_dir, 1);
+		free(current_dir);
+	}
 
 	while (1)
 	{
@@ -72,3 +82,4 @@ int main(int ac, char **av, char *envp[])
 	free(line);
 	return (0);
 }
+

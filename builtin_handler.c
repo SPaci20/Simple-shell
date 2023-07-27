@@ -9,7 +9,14 @@
  */
 int handle_builtin(char **command, char *line)
 {
-	struct builtin builtin = {"env", "exit"};
+	struct builtin
+	{
+		char *env;
+		char *exit;
+		char *cd;
+	};
+
+	struct builtin builtin = {"env", "exit", "cd"};
 
 	if (strcmp(*command, builtin.env) == 0)
 	{
@@ -23,23 +30,11 @@ int handle_builtin(char **command, char *line)
 		exit_cmd(command, line);
 		return (1);
 	}
-	else if (strcmp(*command, "setenv") == 0)
+	else if (strcmp(*command, builtin.cd) == 0)
 	{
-		/* Initialize a new environment variable or modify an existing one */
-		if (set_env(command) == 0)
-			return (1);
-	}
-	else if (strcmp(*command, "unsetenv") == 0)
-	{
-		/* Remove an environment variable */
-		if (unset_env(command) == 0)
-			return (1);
-	}
-	else if (strcmp(*command, "cd") == 0)
-	{
-		/* Change the current directory */
-		if (cd_builtin(command) == 0)
-			return (1);
+		/* Change directory */
+		cd_builtin(command);
+		return (1);
 	}
 	/* The command is not a builtin */
 	return (0);
