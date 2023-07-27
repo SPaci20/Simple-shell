@@ -1,17 +1,16 @@
 #include "shell.h"
 
 /**
- * test_path - checks whether path is valid
+ * test_path - checks whether path is valid and command exists
  * @path: tokenized path
  * @command: user entered command
  *
- * Return: path appended with command on success
- * NULL on failure
+ * Return: path appended with command on success, NULL on failure
  */
 char *test_path(char **path, char *command)
 {
 	int i = 0;
-	char *output;
+	char *output = NULL;
 
 	while (path[i])
 	{
@@ -25,3 +24,4 @@ char *test_path(char **path, char *command)
 	}
 	return (NULL);
 }
+

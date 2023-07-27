@@ -12,6 +12,13 @@ void execution(char *cp, char **cmd)
 	int status;
 	char **env = environ;
 
+	/* Check if the command exists before forking */
+	if (cp == NULL)
+	{
+		perror(cmd[0]);
+		return;
+	}
+
 	/* Fork a child process */
 	child_pid = fork();
 	if (child_pid < 0)
@@ -40,3 +47,4 @@ void execution(char *cp, char **cmd)
 		wait(&status);
 	}
 }
+
